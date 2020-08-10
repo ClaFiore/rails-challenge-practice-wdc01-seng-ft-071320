@@ -15,8 +15,13 @@ class CompaniesController < ApplicationController
     end
     
     def create
-        @company = Company.create(company_params)
-        redirect_to company_path(@company)
+        @company = Company.new(company_params)
+        if @company.valid?
+            @company.save
+            redirect_to company_path(@company)
+        else
+            render :new
+        end
     end
 
     def add_employee
