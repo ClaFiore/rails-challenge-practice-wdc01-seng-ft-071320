@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :buildings
   resources :companies
 
+  post "/employees", to: "companies#add_employee"
+  
 end

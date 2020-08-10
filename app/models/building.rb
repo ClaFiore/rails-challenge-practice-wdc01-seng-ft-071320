@@ -2,6 +2,7 @@ class Building < ApplicationRecord
 
   has_many :offices
   has_many :companies, through: :offices
+  # validates :
 
   def number_of_floors_available
     all_floors = Array(1..self.number_of_floors)

@@ -1,0 +1,33 @@
+<h1> <%= @company.name%> detail </h1>
+
+
+
+<h3>List of building/s:</h3>
+<ul>
+    <% @company.buildings.each do |building| %>
+        <h3><li>Building name: <%= building.name%></li></h3>
+            <% building.offices.each do |office| %>
+            
+                <% if office.company_id == @company.id %>
+                    Floor number/s: <%= office.floor %>
+                <% end %>
+            <% end %>
+    <% end %>
+</ul>
+
+List of employes:
+<ul>
+    <% @company.employees.each do |e| %>
+    <li><%= e.name %> - <%= e.title %> </li>
+    <%end %>
+</ul>
+
+<%= form_for @employee do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.hidden_field :company_id, value: @company.id %>
+    <%= f.submit %>
+<% end %>
+
